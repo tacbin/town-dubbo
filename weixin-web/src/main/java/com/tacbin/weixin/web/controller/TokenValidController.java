@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@RequestMapping("/wx")
+@RequestMapping("/wx/{appid}")
 public class TokenValidController {
     private final WxMpService wxService;
     private final WxMpMessageRouter messageRouter;
