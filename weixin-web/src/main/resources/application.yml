@@ -9,11 +9,11 @@ spring:
 wx:
   mp:
     configs:
-      - appId: 1111 （一个公众号的appid）
-        secret: 1111（公众号的appsecret）
+      - appId: wx596f8629885ab81f
+        secret: c78b2af63de1f016ac46f9df4161b960
         token: 123hhiwhriw321
-        aesKey: N2Hgry8ktoAzcVofRbYFZBZBas4HL9Uj9BrnlPPZuFk
+        aesKey: HoR6W3oTj1lc6UQ64AouwMGDlOFKGCXsbYIh0dPaDro
 #      - appId: 2222 （另一个公众号的appid，以下同上）
-#        secret: 1111
-#        token: 111
-#        aesKey: 111
+#        secret: 1111（公众号的appsecret）
+#        token: 111 token
+#        aesKey: 111 （接口配置里的EncodingAESKey值）
