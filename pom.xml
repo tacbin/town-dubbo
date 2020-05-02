@@ -41,7 +41,11 @@
             <version>3.7.0</version>
         </dependency>
         <!--结束-微信公众号-->
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
