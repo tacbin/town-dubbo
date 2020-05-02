@@ -1,14 +1,14 @@
 server:
-  port: 443
+  port: 80
 
 wx:
   mp:
     configs:
-      - appId: 1111 £¨Ò»¸ö¹«ÖÚºÅµÄappid£©
-        secret: 1111£¨¹«ÖÚºÅµÄappsecret£©
-        token: 111 £¨½Ó¿ÚÅäÖÃÀïµÄTokenÖµ£©
-        aesKey: 111 £¨½Ó¿ÚÅäÖÃÀïµÄEncodingAESKeyÖµ£©
-#      - appId: 2222 £¨ÁíÒ»¸ö¹«ÖÚºÅµÄappid£¬ÒÔÏÂÍ¬ÉÏ£©
+      - appId: 1111 ï¼ˆä¸€ä¸ªå…¬ä¼—å·çš„appidï¼‰
+        secret: 1111ï¼ˆå…¬ä¼—å·çš„appsecretï¼‰
+        token: 111 ï¼ˆæ¥å£é…ç½®é‡Œçš„Tokenå€¼ï¼‰
+        aesKey: 111 ï¼ˆæ¥å£é…ç½®é‡Œçš„EncodingAESKeyå€¼ï¼‰
+#      - appId: 2222 ï¼ˆå¦ä¸€ä¸ªå…¬ä¼—å·çš„appidï¼Œä»¥ä¸‹åŒä¸Šï¼‰
 #        secret: 1111
 #        token: 111
 #        aesKey: 111
