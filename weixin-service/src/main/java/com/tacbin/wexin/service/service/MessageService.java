@@ -1,5 +1,6 @@
 package com.tacbin.wexin.service.service;
 
+import com.tacbin.weixin.common.builder.ImageBuilder;
 import com.tacbin.weixin.common.builder.TextBuilder;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
@@ -24,6 +25,6 @@ public class MessageService {
      * 回复图片消息
      */
     public WxMpXmlOutMessage replyImageMessage(String mediaId, WxMpXmlMessage wxMessage, WxMpService weixinService) {
-        return new TextBuilder().build(mediaId, wxMessage, weixinService);
+        return new ImageBuilder().build(mediaId, wxMessage, weixinService);
     }
 }

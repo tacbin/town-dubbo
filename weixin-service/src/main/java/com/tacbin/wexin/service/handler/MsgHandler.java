@@ -54,7 +54,6 @@ public class MsgHandler extends AbstractHandler {
             default:
                 return new TextBuilder().build(JsonUtils.toJson(wxMessage), wxMessage, weixinService);
         }
-
     }
 
     /**
