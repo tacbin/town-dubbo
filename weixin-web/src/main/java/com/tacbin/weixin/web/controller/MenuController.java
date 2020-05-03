@@ -10,6 +10,7 @@ import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Description :
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  **/
 @Slf4j
 @AllArgsConstructor
+@RestController
 @RequestMapping("/menu")
 public class MenuController {
     private WxMpServiceImpl wxMpService;
