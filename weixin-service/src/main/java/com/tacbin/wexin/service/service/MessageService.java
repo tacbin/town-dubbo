@@ -13,7 +13,17 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class MessageService {
-    public WxMpXmlOutMessage replyMessage(String content, WxMpXmlMessage wxMessage, WxMpService weixinService) {
+    /**
+     * 回复文本消息
+     */
+    public WxMpXmlOutMessage replyTextMessage(String content, WxMpXmlMessage wxMessage, WxMpService weixinService) {
         return new TextBuilder().build("收到" + content, wxMessage, weixinService);
+    }
+
+    /**
+     * 回复图片消息
+     */
+    public WxMpXmlOutMessage replyImageMessage(String mediaId, WxMpXmlMessage wxMessage, WxMpService weixinService) {
+        return new TextBuilder().build(mediaId, wxMessage, weixinService);
     }
 }

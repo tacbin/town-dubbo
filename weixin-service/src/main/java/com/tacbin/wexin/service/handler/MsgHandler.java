@@ -29,14 +29,38 @@ public class MsgHandler extends AbstractHandler {
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
                                     Map<String, Object> context, WxMpService weixinService,
                                     WxSessionManager sessionManager) {
-
+        // 当用户输入关键词如“你好”，“客服”等，并且有客服在线时，把消息转发给在线客服
+        try {
+            if (StringUtils.startsWithAny(wxMessage.getContent(), "你好", "客服")
+                    && weixinService.getKefuService().kfOnlineList()
+                    .getKfOnlineList().size() > 0) {
+                return WxMpXmlOutMessage.TRANSFER_CUSTOMER_SERVICE()
+                        .fromUser(wxMessage.getToUser())
+                        .toUser(wxMessage.getFromUser()).build();
+            }
+        } catch (WxErrorException e) {
+            e.printStackTrace();
+        }
+        // 持久化消息
         if (!wxMessage.getMsgType().equals(XmlMsgType.EVENT)) {
             //TODO 可以选择将消息保存到本地
-           String content = wxMessage.getContent();
-           return messageService.replyMessage(content,wxMessage,weixinService);
+        }
+        // 不同类型的消息进行处理
+        switch (wxMessage.getMsgType()) {
+            case XmlMsgType.TEXT:
+                return messageService.replyTextMessage(wxMessage.getContent(), wxMessage, weixinService);
+            case XmlMsgType.IMAGE:
+                return messageService.replyImageMessage(wxMessage.getMediaId(), wxMessage, weixinService);
+            default:
+                return new TextBuilder().build(JsonUtils.toJson(wxMessage), wxMessage, weixinService);
         }
 
-        //当用户输入关键词如“你好”，“客服”等，并且有客服在线时，把消息转发给在线客服
+    }
+
+    /**
+     * 当用户输入关键词如“你好”，“客服”等，并且有客服在线时，把消息转发给在线客服
+     */
+    private WxMpXmlOutMessage invokeKeFu(WxMpXmlMessage wxMessage, WxMpService weixinService) {
         try {
             if (StringUtils.startsWithAny(wxMessage.getContent(), "你好", "客服")
                     && weixinService.getKefuService().kfOnlineList()
@@ -50,7 +74,7 @@ public class MsgHandler extends AbstractHandler {
         }
         //TODO 组装回复消息
         String content = "收到信息内容：" + JsonUtils.toJson(wxMessage);
-        return new TextBuilder().build(content, wxMessage, weixinService);
+        return new TextBuilder().build(JsonUtils.toJson(wxMessage), wxMessage, weixinService);
     }
 
 }
