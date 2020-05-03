@@ -5,6 +5,7 @@ import com.tacbin.weixin.common.builder.TextBuilder;
 import com.tacbin.weixin.common.utils.JsonUtils;
 import com.tacbin.wexin.service.service.MessageService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
@@ -22,6 +23,7 @@ import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
  */
 @Component
 @AllArgsConstructor
+@Slf4j
 public class MsgHandler extends AbstractHandler {
     private MessageService messageService;
 
@@ -44,6 +46,7 @@ public class MsgHandler extends AbstractHandler {
         // 持久化消息
         if (!wxMessage.getMsgType().equals(XmlMsgType.EVENT)) {
             //TODO 可以选择将消息保存到本地
+            logger.info("context： {}", context.toString());
         }
         // 不同类型的消息进行处理
         switch (wxMessage.getMsgType()) {

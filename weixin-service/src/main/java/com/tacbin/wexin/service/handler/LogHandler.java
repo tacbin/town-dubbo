@@ -19,6 +19,7 @@ public class LogHandler extends AbstractHandler {
                                     Map<String, Object> context, WxMpService wxMpService,
                                     WxSessionManager sessionManager) {
         this.logger.info("\n接收到请求消息，内容：{}", JsonUtils.toJson(wxMessage));
+        this.logger.info("\ncontext，内容：{}", JsonUtils.toJson(context));
         return null;
     }
 
