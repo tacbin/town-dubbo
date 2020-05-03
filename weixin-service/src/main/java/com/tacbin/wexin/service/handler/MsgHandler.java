@@ -1,8 +1,10 @@
-package com.tacbin.weixin.web.handler;
+package com.tacbin.wexin.service.handler;
 
 
 import com.tacbin.weixin.common.builder.TextBuilder;
 import com.tacbin.weixin.common.utils.JsonUtils;
+import com.tacbin.wexin.service.service.MessageService;
+import lombok.AllArgsConstructor;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
@@ -19,7 +21,9 @@ import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
  * @author Binary Wang(https://github.com/binarywang)
  */
 @Component
+@AllArgsConstructor
 public class MsgHandler extends AbstractHandler {
+    private MessageService messageService;
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -28,6 +32,8 @@ public class MsgHandler extends AbstractHandler {
 
         if (!wxMessage.getMsgType().equals(XmlMsgType.EVENT)) {
             //TODO 可以选择将消息保存到本地
+           String content = wxMessage.getContent();
+           return messageService.replyMessage(content,wxMessage,weixinService);
         }
 
         //当用户输入关键词如“你好”，“客服”等，并且有客服在线时，把消息转发给在线客服
@@ -42,12 +48,9 @@ public class MsgHandler extends AbstractHandler {
         } catch (WxErrorException e) {
             e.printStackTrace();
         }
-
         //TODO 组装回复消息
         String content = "收到信息内容：" + JsonUtils.toJson(wxMessage);
-
         return new TextBuilder().build(content, wxMessage, weixinService);
-
     }
 
 }

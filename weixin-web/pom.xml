@@ -39,6 +39,12 @@
             <version>1.0-wx</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.tacbin.wexin.service</groupId>
+            <artifactId>weixin-service</artifactId>
+            <version>1.0-wechat</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

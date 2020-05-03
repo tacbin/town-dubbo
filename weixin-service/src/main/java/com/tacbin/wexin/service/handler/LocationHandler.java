@@ -1,4 +1,4 @@
-package com.tacbin.weixin.web.handler;
+package com.tacbin.wexin.service.handler;
 
 
 import com.tacbin.weixin.common.builder.TextBuilder;

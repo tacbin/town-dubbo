@@ -1,6 +1,6 @@
 package com.tacbin.weixin.web.config;
 
-import com.tacbin.weixin.web.handler.*;
+import com.tacbin.wexin.service.handler.*;
 import lombok.AllArgsConstructor;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
