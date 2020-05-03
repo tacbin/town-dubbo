@@ -46,7 +46,6 @@ public class MsgHandler extends AbstractHandler {
         // 持久化消息
         if (!wxMessage.getMsgType().equals(XmlMsgType.EVENT)) {
             //TODO 可以选择将消息保存到本地
-            logger.info("context： {}", context.toString());
         }
         // 不同类型的消息进行处理
         switch (wxMessage.getMsgType()) {
