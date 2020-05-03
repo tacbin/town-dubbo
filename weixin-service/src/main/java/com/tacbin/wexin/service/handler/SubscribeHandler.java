@@ -32,6 +32,7 @@ public class SubscribeHandler extends AbstractHandler {
                     .userInfo(wxMessage.getFromUser(), null);
             if (userWxInfo != null) {
                 // TODO 可以添加关注用户到本地数据库
+                logger.info("关注者的用户信息:{}", userWxInfo.toString());
             }
         } catch (WxErrorException e) {
             if (e.getError().getErrorCode() == 48001) {
