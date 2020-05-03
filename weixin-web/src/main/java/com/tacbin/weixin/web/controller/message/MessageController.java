@@ -1,4 +1,4 @@
-package com.tacbin.weixin.web.controller;
+package com.tacbin.weixin.web.controller.message;
 
 import com.tacbin.framework.base.common.ResponseInfo;
 import com.tacbin.framework.base.common.Status;
