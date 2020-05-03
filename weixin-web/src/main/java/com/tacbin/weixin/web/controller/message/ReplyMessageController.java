@@ -1,5 +1,8 @@
 package com.tacbin.weixin.web.controller.message;
 
+import com.tacbin.framework.base.common.ResponseInfo;
+import com.tacbin.framework.base.common.Status;
+import com.tacbin.weixin.web.entity.request.MessageRequest;
 import com.tacbin.weixin.web.handler.MsgHandler;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +29,8 @@ public class ReplyMessageController {
      * 公众号发送消息给用户，前提是24小时之内有交互
      */
     @RequestMapping(value = "/sendMsg", method = RequestMethod.POST)
-    public String sendMessage(Object object) {
-        System.out.println(object.toString());
-        return "got it";
+    public ResponseInfo<String> sendMessage(MessageRequest messageRequest) {
+        System.out.println(messageRequest.toString());
+        return new ResponseInfo<>("收到！", Status.SUCCESS, messageRequest.toString());
     }
 }
