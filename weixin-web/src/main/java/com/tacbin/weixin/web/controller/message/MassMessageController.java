@@ -8,6 +8,7 @@ import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpMassMessageService;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.WxMpMassNews;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,7 @@ public class MassMessageController {
     private WxMpService mpService;
 
     @RequestMapping(path = "/upload-news", method = RequestMethod.POST)
-    public ResponseInfo<String> uploadNews(WxMpMassNews news) {
+    public ResponseInfo<String> uploadNews(@RequestBody WxMpMassNews news) {
         WxMpMassMessageService massMessageService = mpService.getMassMessageService();
         try {
             massMessageService.massNewsUpload(news);
