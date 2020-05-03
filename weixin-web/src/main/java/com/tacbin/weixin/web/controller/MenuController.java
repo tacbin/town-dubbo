@@ -39,7 +39,6 @@ public class MenuController {
         button1.setType(WxConsts.MenuButtonType.CLICK);
         button1.setName("今日歌曲");
         button1.setKey("V1001_TODAY_MUSIC");
-
 //        WxMenuButton button2 = new WxMenuButton();
 //        button2.setType(WxConsts.BUTTON_MINIPROGRAM);
 //        button2.setName("小程序");
