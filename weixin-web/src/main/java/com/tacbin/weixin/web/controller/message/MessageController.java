@@ -4,6 +4,7 @@ import com.tacbin.framework.base.common.ResponseInfo;
 import com.tacbin.framework.base.common.Status;
 import com.tacbin.weixin.web.entity.request.MessageRequest;
 import com.tacbin.wexin.service.handler.MsgHandler;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +31,8 @@ public class MessageController {
      * api测试
      */
     @RequestMapping(value = "/sendMsg", method = RequestMethod.POST)
-    public ResponseInfo<String> sendMessage(@RequestBody MessageRequest messageRequest) {
-        return new ResponseInfo<>("收到！", Status.SUCCESS, messageRequest.toString());
+    @ApiOperation(value = "发送信息", notes = "发送信息")
+    public ResponseInfo<String> sendMessage() {
+        return new ResponseInfo<>("收到！", Status.SUCCESS, "");
     }
 }
