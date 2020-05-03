@@ -25,7 +25,7 @@ public class LocationHandler extends AbstractHandler {
         if (wxMessage.getMsgType().equals(XmlMsgType.LOCATION)) {
             //TODO 接收处理用户发送的地理位置消息
             try {
-                String content = "感谢反馈，您的的地理位置已收到！";
+                String content = "感谢反馈，您的地理位置已收到！";
                 return new TextBuilder().build(content, wxMessage, null);
             } catch (Exception e) {
                 this.logger.error("位置消息接收处理失败", e);
