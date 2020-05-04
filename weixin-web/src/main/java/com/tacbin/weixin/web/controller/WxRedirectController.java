@@ -24,7 +24,7 @@ public class WxRedirectController {
 
     @RequestMapping("/greet")
     public String greetUser(@PathVariable String appid, @RequestParam String code, ModelMap map) {
-        log.info("请求参数appid{} code{} map{}", appid, code, map);
+        log.info("请求参数appid：{} code：{} map：{}", appid, code, map);
         if (!this.wxService.switchover(appid)) {
             throw new IllegalArgumentException(String.format("未找到对应appid=[%s]的配置，请核实！", appid));
         }
@@ -33,8 +33,9 @@ public class WxRedirectController {
             WxMpOAuth2AccessToken accessToken = wxService.oauth2getAccessToken(code);
             WxMpUser user = wxService.oauth2getUserInfo(accessToken, null);
             map.put("user", user);
+            log.info("get user info：{}", user);
         } catch (WxErrorException e) {
-            e.printStackTrace();
+            log.error("获取信息失败：{}", e.getMessage());
         }
 
         return "greet_user";
