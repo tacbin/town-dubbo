@@ -39,6 +39,6 @@ public class WxRedirectController {
             log.error("获取信息失败：{}", e.getMessage());
         }
 
-        return "static/index.html";//redirect:static/index.html
+        return "redirect:static/index.html";
     }
 }
