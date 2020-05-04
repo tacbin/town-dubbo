@@ -1,6 +1,7 @@
 package com.tacbin.weixin.web.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
@@ -16,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @AllArgsConstructor
 @Controller
+@Slf4j
 @RequestMapping("/wx/redirect/{appid}")
 public class WxRedirectController {
     private final WxMpService wxService;
 
     @RequestMapping("/greet")
     public String greetUser(@PathVariable String appid, @RequestParam String code, ModelMap map) {
+        log.info("请求参数appid{} code{} map{}", appid, code, map);
         if (!this.wxService.switchover(appid)) {
             throw new IllegalArgumentException(String.format("未找到对应appid=[%s]的配置，请核实！", appid));
         }
