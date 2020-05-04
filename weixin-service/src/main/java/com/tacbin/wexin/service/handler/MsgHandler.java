@@ -36,12 +36,13 @@ public class MsgHandler extends AbstractHandler {
             if (StringUtils.startsWithAny(wxMessage.getContent(), "你好", "客服")
                     && weixinService.getKefuService().kfOnlineList()
                     .getKfOnlineList().size() > 0) {
+                logger.info("-- 开始转发 --");
                 return WxMpXmlOutMessage.TRANSFER_CUSTOMER_SERVICE()
                         .fromUser(wxMessage.getToUser())
                         .toUser(wxMessage.getFromUser()).build();
             }
         } catch (WxErrorException e) {
-            e.printStackTrace();
+            logger.info("客服连接失败：{}", e.getMessage());
         }
         // 持久化消息
         if (!wxMessage.getMsgType().equals(XmlMsgType.EVENT)) {
