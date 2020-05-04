@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Edward
  */
 @AllArgsConstructor
-@RestController
+@Controller
 @Slf4j
 @RequestMapping("/wx/redirect/{appid}")
 public class WxRedirectController {
@@ -39,6 +39,6 @@ public class WxRedirectController {
             log.error("获取信息失败：{}", e.getMessage());
         }
 
-        return "redirect:static/index.html";
+        return "static/index.html";//redirect:static/index.html
     }
 }
