@@ -1,6 +1,7 @@
 package com.tacbin.weixin.web.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.bean.menu.WxMenu;
 import me.chanjar.weixin.common.bean.menu.WxMenuButton;
@@ -21,6 +22,7 @@ import static me.chanjar.weixin.common.api.WxConsts.MenuButtonType;
 /**
  * @author Binary Wang(https://github.com/binarywang)
  */
+@Slf4j
 @AllArgsConstructor
 @RestController
 @RequestMapping("/wx/menu/{appid}")
@@ -84,13 +86,14 @@ public class WxMenuController {
         button34.setName("获取用户信息");
 
         ServletRequestAttributes servletRequestAttributes =
-            (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+                (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (servletRequestAttributes != null) {
             HttpServletRequest request = servletRequestAttributes.getRequest();
             URL requestURL = new URL(request.getRequestURL().toString());
             String url = this.wxService.switchoverTo(appid).oauth2buildAuthorizationUrl(
-                String.format("%s://%s/wx/redirect/%s/greet", requestURL.getProtocol(), requestURL.getHost(), appid),
-                WxConsts.OAuth2Scope.SNSAPI_USERINFO, null);
+                    String.format("%s://%s/wx/redirect/%s/greet", requestURL.getProtocol(), requestURL.getHost(), appid),
+                    WxConsts.OAuth2Scope.SNSAPI_USERINFO, null);
+            log.info("获取用户信息的 url:{}", url);
             button34.setUrl(url);
         }
 

@@ -3,13 +3,17 @@ server:
 
 spring:
   datasource:
-      url: jdbc:mysql://localhost:3306/product_show?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/product_show?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
 
 wx:
   mp:
     configs:
       - appId: wx01a255b907e83392
         secret: 1899e5003c8e47bad546d8998df87594
+        token: 123hhiwhriw321
+        aesKey: HoR6W3oTj1lc6UQ64AouwMGDlOFKGCXsbYIh0dPaDro
+      - appId: wx596f8629885ab81f
+        secret: c78b2af63de1f016ac46f9df4161b960
         token: 123hhiwhriw321
         aesKey: HoR6W3oTj1lc6UQ64AouwMGDlOFKGCXsbYIh0dPaDro
 #      - appId: 2222 （另一个公众号的appid，以下同上）
