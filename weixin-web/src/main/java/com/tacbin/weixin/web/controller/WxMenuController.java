@@ -91,7 +91,7 @@ public class WxMenuController {
             HttpServletRequest request = servletRequestAttributes.getRequest();
             URL requestURL = new URL(request.getRequestURL().toString());
             String url = this.wxService.switchoverTo(appid).oauth2buildAuthorizationUrl(
-                    String.format("%s://%s/wx/redirect/%s/greet", requestURL.getProtocol(), requestURL.getHost(), appid),
+                    String.format("%s://%s/index.html", requestURL.getProtocol(), requestURL.getHost()),// "%s://%s/wx/redirect/%s/greet"  , appid
                     WxConsts.OAuth2Scope.SNSAPI_USERINFO, null);
             log.info("获取用户信息的 url:{}", url);
             button34.setUrl(url);
