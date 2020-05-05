@@ -23,8 +23,12 @@ public class AuthcFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        log.info("请求:{}", JsonUtils.toJson(servletRequest));
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
+        try {
+            log.info("请求:{}", JsonUtils.toJson(servletRequest));
+        } catch (Exception e) {
+            log.error("authcFilter error:{}", e.getMessage());
+        }
     }
 
     @Override
