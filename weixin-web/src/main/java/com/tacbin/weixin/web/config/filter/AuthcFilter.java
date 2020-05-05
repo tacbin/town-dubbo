@@ -2,6 +2,7 @@ package com.tacbin.weixin.web.config.filter;
 
 import com.tacbin.weixin.common.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -24,8 +25,9 @@ public class AuthcFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
+        ShiroHttpServletRequest shiroHttpServletRequest = (ShiroHttpServletRequest) servletRequest;
         try {
-            log.info("请求:{}", JsonUtils.toJson(servletRequest));
+            log.info("请求url:{} 参数:{}", shiroHttpServletRequest.getPathInfo(), JsonUtils.toJson(shiroHttpServletRequest.getParameterMap()));
         } catch (Exception e) {
             log.error("authcFilter error:{}", e.getMessage());
         }
