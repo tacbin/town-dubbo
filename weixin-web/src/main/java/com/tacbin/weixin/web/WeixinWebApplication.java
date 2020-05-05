@@ -10,7 +10,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @MapperScan({"com.tacbin.framework.data.mapper"})
 @ComponentScan(basePackages = {"com.tacbin.weixin.web","com.tacbin.wexin.service","com.tacbin.weixin.common"})
-@ServletComponentScan(basePackages = {"com.yy.qccrm.filter"})
 @EnableSwagger2
 public class WeixinWebApplication {
 
