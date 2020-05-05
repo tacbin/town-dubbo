@@ -24,13 +24,10 @@ public class AuthcFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         ShiroHttpServletRequest shiroHttpServletRequest = (ShiroHttpServletRequest) servletRequest;
-        try {
-            log.info("请求url:{} 参数:{}", shiroHttpServletRequest.getPathInfo(), shiroHttpServletRequest.getParameterMap().toString());
-        } catch (Exception e) {
-            log.error("authcFilter error:{}", e.getMessage());
-        }
+        log.info("请求url:{} 参数:{}", shiroHttpServletRequest.getPathInfo(), shiroHttpServletRequest.getParameterMap().toString());
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
