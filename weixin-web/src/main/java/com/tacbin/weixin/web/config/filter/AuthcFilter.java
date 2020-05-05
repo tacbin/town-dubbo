@@ -27,7 +27,7 @@ public class AuthcFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
         ShiroHttpServletRequest shiroHttpServletRequest = (ShiroHttpServletRequest) servletRequest;
         try {
-            log.info("请求url:{} 参数:{}", shiroHttpServletRequest.getPathInfo(), JsonUtils.toJson(shiroHttpServletRequest.getParameterMap()));
+            log.info("请求url:{} 参数:{}", shiroHttpServletRequest.getPathInfo(), shiroHttpServletRequest.getParameterMap());
         } catch (Exception e) {
             log.error("authcFilter error:{}", e.getMessage());
         }
