@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: dubbo-registry-zookeeper-provider-sample
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  scan:
+    base-packages: com.tacbin.wexin.service.service

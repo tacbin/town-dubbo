@@ -3,7 +3,7 @@ package com.tacbin.wexin.service.handler;
 
 import com.tacbin.weixin.common.builder.TextBuilder;
 import com.tacbin.weixin.common.utils.JsonUtils;
-import com.tacbin.wexin.service.service.MessageService;
+import com.tacbin.wexin.service.service.biz.MessageServiceBiz;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -25,7 +25,7 @@ import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
 @AllArgsConstructor
 @Slf4j
 public class MsgHandler extends AbstractHandler {
-    private MessageService messageService;
+    private MessageServiceBiz messageServiceBiz;
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -58,9 +58,9 @@ public class MsgHandler extends AbstractHandler {
         // 不同类型的消息进行处理
         switch (wxMessage.getMsgType()) {
             case XmlMsgType.TEXT:
-                return messageService.replyTextMessage(wxMessage.getContent(), wxMessage, weixinService);
+                return messageServiceBiz.replyTextMessage(wxMessage.getContent(), wxMessage, weixinService);
             case XmlMsgType.IMAGE:
-                return messageService.replyImageMessage(wxMessage.getMediaId(), wxMessage, weixinService);
+                return messageServiceBiz.replyImageMessage(wxMessage.getMediaId(), wxMessage, weixinService);
             default:
                 return new TextBuilder().build(JsonUtils.toJson(wxMessage), wxMessage, weixinService);
         }
