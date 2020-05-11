@@ -17,6 +17,8 @@
     <properties>
         <java.version>1.8</java.version>
         <dubbo.version>2.7.6</dubbo.version>
+        <!-- 微信工具包 -->
+        <weixin-java.version>3.7.0</weixin-java.version>
     </properties>
 
     <modules>
@@ -33,13 +35,33 @@
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>${dubbo.version}</version>
         </dependency>
-        <!-- 微信公众号-->
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.7.0</version>
+        </dependency>
+
+        <!-- 微信工具包 start -->
+        <!-- 公众号平台 -->
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-mp</artifactId>
-            <version>3.7.0</version>
+            <version>${weixin-java.version}</version>
         </dependency>
-        <!--结束-微信公众号-->
+        <!-- 支付 -->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-pay</artifactId>
+            <version>${weixin-java.version}</version>
+        </dependency>
+        <!-- 小程序 -->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-miniapp</artifactId>
+            <version>${weixin-java.version}</version>
+        </dependency>
+        <!-- 微信工具包 end -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

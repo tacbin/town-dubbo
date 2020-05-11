@@ -38,6 +38,7 @@ public class WxMpServiceBiz {
         // 写死一个
         conf.setAppId(AppConstants.APP_ID);
         conf.setSecret(AppConstants.SECRET_ID);
+        conf.setToken(AppConstants.VALID_TOKEN);
         service.setWxMpConfigStorage(conf);
         return service;
     }

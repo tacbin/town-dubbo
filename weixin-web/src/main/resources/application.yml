@@ -23,5 +23,5 @@ wx:
 #        token: 111 token
 #        aesKey: 111 ���ӿ��������EncodingAESKeyֵ��
 server:
-  port: 8087
+  port: 9000
 
