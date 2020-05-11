@@ -32,5 +32,9 @@
             <artifactId>weixin-service-api</artifactId>
             <version>1.0-wx</version>
         </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
     </dependencies>
 </project>

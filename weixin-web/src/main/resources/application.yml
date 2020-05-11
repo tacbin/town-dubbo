@@ -18,10 +18,10 @@ wx:
         secret: c78b2af63de1f016ac46f9df4161b960
         token: 123hhiwhriw321
         aesKey: HoR6W3oTj1lc6UQ64AouwMGDlOFKGCXsbYIh0dPaDro
-#      - appId: 2222 （另一个公众号的appid，以下同上）
-#        secret: 1111（公众号的appsecret）
+#      - appId: 2222 锟斤拷锟斤拷一锟斤拷锟斤拷锟节号碉拷appid锟斤拷锟斤拷锟斤拷同锟较ｏ拷
+#        secret: 1111锟斤拷锟斤拷锟节号碉拷appsecret锟斤拷
 #        token: 111 token
-#        aesKey: 111 （接口配置里的EncodingAESKey值）
+#        aesKey: 111 锟斤拷锟接匡拷锟斤拷锟斤拷锟斤拷锟紼ncodingAESKey值锟斤拷
 server:
-  port: 9000
+  port: 8087
 

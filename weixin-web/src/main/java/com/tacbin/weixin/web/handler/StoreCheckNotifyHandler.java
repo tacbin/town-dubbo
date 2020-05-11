@@ -1,4 +1,4 @@
-package com.tacbin.wexin.service.handler;
+package com.tacbin.weixin.web.handler;
 
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;

@@ -1,9 +1,8 @@
-package com.tacbin.wexin.service.handler;
+package com.tacbin.weixin.web.handler;
 
 
 import com.tacbin.weixin.common.builder.TextBuilder;
 import com.tacbin.weixin.common.utils.JsonUtils;
-import com.tacbin.wexin.service.service.biz.MessageServiceBiz;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -22,10 +21,8 @@ import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
  * @author Binary Wang(https://github.com/binarywang)
  */
 @Component
-@AllArgsConstructor
 @Slf4j
 public class MsgHandler extends AbstractHandler {
-    private MessageServiceBiz messageServiceBiz;
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -48,21 +45,6 @@ public class MsgHandler extends AbstractHandler {
         if (!wxMessage.getMsgType().equals(XmlMsgType.EVENT)) {
             //TODO 可以选择将消息保存到本地
         }
-        return dealDifferentTypeOfMessage(wxMessage, weixinService);
-    }
-
-    /**
-     * 不同消息类型进行处理
-     */
-    private WxMpXmlOutMessage dealDifferentTypeOfMessage(WxMpXmlMessage wxMessage, WxMpService weixinService) {
-        // 不同类型的消息进行处理
-        switch (wxMessage.getMsgType()) {
-            case XmlMsgType.TEXT:
-                return messageServiceBiz.replyTextMessage(wxMessage.getContent(), wxMessage, weixinService);
-            case XmlMsgType.IMAGE:
-                return messageServiceBiz.replyImageMessage(wxMessage.getMediaId(), wxMessage, weixinService);
-            default:
-                return new TextBuilder().build(JsonUtils.toJson(wxMessage), wxMessage, weixinService);
-        }
+        return null;
     }
 }

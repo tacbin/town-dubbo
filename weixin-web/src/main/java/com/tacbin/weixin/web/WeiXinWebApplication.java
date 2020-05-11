@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author EDZ
  */
 @SpringBootApplication
-public class WeixinWebApplication {
+public class WeiXinWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WeixinWebApplication.class, args);
+        SpringApplication.run(WeiXinWebApplication.class, args);
     }
 
 }
