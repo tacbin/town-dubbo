@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: dubbo-registry-zookeeper-provider-sample
+  redis:
+    host: 119.23.42.141
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+    port: 6379
+    timeout: 5000
+    password: tacbin@123
+    database: 0
+
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  scan:
+    base-packages: com.tacbin.town.service.service

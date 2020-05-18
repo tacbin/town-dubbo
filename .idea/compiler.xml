@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="weixin-repo" />
+        <module name="weixin-service" />
+        <module name="weixin-common" />
+        <module name="weixin-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="wechat" target="1.8" />
+      <module name="weixin-common" target="1.8" />
+      <module name="weixin-repo" target="1.8" />
+      <module name="weixin-service" target="1.8" />
+      <module name="weixin-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

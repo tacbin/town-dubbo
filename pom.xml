@@ -8,7 +8,7 @@
         <version>2.2.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.tacbin.weixin</groupId>
+    <groupId>com.tacbin.town</groupId>
     <artifactId>wechat</artifactId>
     <version>1.0-wx</version>
     <name>wechat</name>
@@ -22,11 +22,11 @@
     </properties>
 
     <modules>
-        <module>weixin-web</module>
-        <module>weixin-service</module>
-        <module>weixin-repo</module>
-        <module>weixin-common</module>
-        <module>weixin-service-api</module>
+        <module>town-web</module>
+        <module>town-service</module>
+        <module>town-repo</module>
+        <module>town-common</module>
+        <module>town-service-api</module>
     </modules>
 
     <dependencies>
