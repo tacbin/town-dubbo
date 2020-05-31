@@ -6,11 +6,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-/**
- * @author tacbin
- * @createTime 2020/5/11 10:50
- * @description
- **/
 @Getter
 @Setter
 @Builder

@@ -38,4 +38,7 @@ server:
 
 # shiro
 shiro:
-  loginUrl: login.html
+  loginUrl: ../login.html
+
+custom:
+  md-times: 2
