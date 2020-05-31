@@ -18,23 +18,28 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.tacbin.town.common</groupId>
-            <artifactId>town-common</artifactId>
-            <version>1.0-wx</version>
-            <scope>compile</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
         <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.tacbin.town</groupId>
             <artifactId>town-service-api</artifactId>
             <version>1.0-wx</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
+            <groupId>com.tacbin.town.repo</groupId>
+            <artifactId>town-repo</artifactId>
+            <version>1.0-wx</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

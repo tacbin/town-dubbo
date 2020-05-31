@@ -1,4 +1,0 @@
-spring:
-  datasource:
-    url: jdbc:mysql://119.23.42.141:3306/product_show?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
-

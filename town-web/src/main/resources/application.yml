@@ -1,6 +1,17 @@
 spring:
   application:
     name: dubbo-registry-zookeeper-consumer
+  redis:
+    host: 119.23.42.141
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+    port: 6379
+    timeout: 5000
+    password: tacbin@123
 embedded:
   zookeeper:
     port: 2181
@@ -25,3 +36,6 @@ wx:
 server:
   port: 9000
 
+# shiro
+shiro:
+  loginUrl: login.html
