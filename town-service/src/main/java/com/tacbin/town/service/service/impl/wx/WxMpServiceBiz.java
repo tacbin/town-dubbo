@@ -1,4 +1,4 @@
-package com.tacbin.town.service.service.wx;
+package com.tacbin.town.service.service.impl.wx;
 
 import com.tacbin.town.common.constants.AppConstants;
 import me.chanjar.weixin.mp.api.WxMpService;

@@ -4,11 +4,9 @@ import com.tacbin.town.api.service.entity.PermissionLevel;
 import com.tacbin.town.api.service.shiro.IPermissionService;
 import com.tacbin.town.repo.entity.UserPermissionLevel;
 import com.tacbin.town.repo.service.impl.IUserPermissionServiceImpl;
+import com.tacbin.town.service.util.convert.EntityConvert;
 import lombok.AllArgsConstructor;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.dubbo.config.annotation.Service;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * @Description :
@@ -24,15 +22,7 @@ public class PermissionServiceImpl implements IPermissionService {
     public PermissionLevel selectOneById(long id) {
         UserPermissionLevel permissionLevel = permissionService.selectOneById(id);
         PermissionLevel level = new PermissionLevel();
-        copyPermissionLevel(permissionLevel, level);
+        EntityConvert.copyPermissionLevel(permissionLevel, level);
         return level;
-    }
-
-    private void copyPermissionLevel(UserPermissionLevel source, PermissionLevel dest) {
-        try {
-            BeanUtils.copyProperties(dest, source);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -37,10 +37,16 @@ public class ShiroAuthFilterConfig {
     @Bean
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
-        // 登录页，登录接口以及开发静态资源访问权限
-//        chainDefinition.addPathDefinition("/user/login", "authc");
+        // 登录页，登录接口
+        chainDefinition.addPathDefinition("/user/login", "anon");
+        chainDefinition.addPathDefinition("/user/isLogin", "anon");
+        // 不要登录态的静态资源
+        chainDefinition.addPathDefinition("/index.html", "anon");
+        chainDefinition.addPathDefinition("/login.html", "anon");
+        chainDefinition.addPathDefinition("/assets/**", "anon");
+        chainDefinition.addPathDefinition("/images/**", "anon");
         // 其余页面都需登录
-        chainDefinition.addPathDefinition("/**", "anon");
+        chainDefinition.addPathDefinition("/**", "authc");
         return chainDefinition;
     }
 

@@ -1,4 +1,4 @@
-package com.tacbin.town.web.controller;
+package com.tacbin.town.web.controller.wx;
 
 import com.tacbin.town.web.config.MpRouterConfig;
 import com.tacbin.town.common.constants.AppConstants;

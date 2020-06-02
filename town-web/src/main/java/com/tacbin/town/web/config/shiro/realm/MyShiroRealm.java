@@ -3,7 +3,7 @@ package com.tacbin.town.web.config.shiro.realm;
 import com.tacbin.town.api.service.entity.PermissionLevel;
 import com.tacbin.town.api.service.entity.UserInfo;
 import com.tacbin.town.api.service.shiro.IPermissionService;
-import com.tacbin.town.api.service.shiro.IUserServiceImpl;
+import com.tacbin.town.api.service.shiro.IUserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Lazy;
 public class MyShiroRealm extends AuthorizingRealm {
     @Autowired
     @Lazy
-    private IUserServiceImpl IUserInfoService;
+    private IUserService IUserInfoService;
 
     @Autowired
     @Lazy

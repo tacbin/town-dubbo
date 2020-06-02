@@ -1,9 +1,8 @@
-package com.tacbin.town.service.service.impl;
+package com.tacbin.town.service.service.impl.wx;
 
 import com.tacbin.town.common.entity.ResponseInfo;
 import com.tacbin.town.common.entity.Status;
 import com.tacbin.town.api.service.TokenCheckService;
-import com.tacbin.town.service.service.wx.WxMpServiceBiz;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.mp.api.WxMpService;
 import org.apache.commons.lang3.StringUtils;

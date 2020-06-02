@@ -38,4 +38,20 @@ public class UserInfoBeanUtil {
         //生成盐（需要存入数据库中）
         return new SecureRandomNumberGenerator().nextBytes().toHex();
     }
+
+    /**
+     * 是否处于登录态
+     *
+     * @return
+     */
+    public boolean isLogin() {
+        return SecurityUtils.getSubject().isAuthenticated();
+    }
+
+    /**
+     * 登出
+     */
+    public void logOut() {
+        SecurityUtils.getSubject().logout();
+    }
 }

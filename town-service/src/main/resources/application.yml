@@ -1,6 +1,6 @@
 spring:
   application:
-    name: dubbo-registry-zookeeper-provider-sample
+    name: dubbo-registry-zookeeper-provider
   redis:
     host: 119.23.42.141
     lettuce:
