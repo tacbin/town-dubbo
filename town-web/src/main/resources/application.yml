@@ -1,4 +1,10 @@
 spring:
+  # 文件大小
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 6MB
+      enabled: true
   application:
     name: dubbo-registry-zookeeper-consumer
   redis:

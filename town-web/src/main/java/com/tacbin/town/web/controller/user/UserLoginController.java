@@ -4,6 +4,7 @@ import com.tacbin.town.api.service.entity.UserInfo;
 import com.tacbin.town.api.service.shiro.IUserService;
 import com.tacbin.town.common.entity.ResponseInfo;
 import com.tacbin.town.common.entity.Status;
+import com.tacbin.town.web.aop.AnalysisLog;
 import com.tacbin.town.web.config.shiro.realm.MyShiroRealm;
 import com.tacbin.town.web.util.UserInfoBeanUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -44,8 +45,9 @@ public class UserLoginController {
      * @param password
      * @return
      */
+    @AnalysisLog
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public ResponseInfo<Boolean> login(@RequestParam String userName,@RequestParam String password) {
+    public ResponseInfo<Boolean> login(@RequestParam String userName, @RequestParam String password) {
         return userLoginIn(userName, password);
     }
 
@@ -56,8 +58,9 @@ public class UserLoginController {
      * @param repeatPassword
      * @return
      */
+    @AnalysisLog
     @RequestMapping(method = RequestMethod.POST, value = "/changePassword")
-    public ResponseInfo<String> changePassword(@RequestParam String newPassword,@RequestParam String repeatPassword) {
+    public ResponseInfo<String> changePassword(@RequestParam String newPassword, @RequestParam String repeatPassword) {
         try {
             changePwd(newPassword, repeatPassword);
         } catch (Exception e) {
@@ -70,6 +73,7 @@ public class UserLoginController {
     /**
      * 登出
      */
+    @AnalysisLog
     @RequestMapping(method = RequestMethod.POST, value = "/loginOut")
     public void loginOut() {
         userInfoBeanUtil.logOut();
@@ -80,6 +84,7 @@ public class UserLoginController {
      *
      * @return
      */
+    @AnalysisLog
     @RequestMapping(method = RequestMethod.POST, value = "/isLogin")
     public ResponseInfo<Boolean> isLogin() {
         return new ResponseInfo<>("", Status.SUCCESS, userInfoBeanUtil.isLogin());

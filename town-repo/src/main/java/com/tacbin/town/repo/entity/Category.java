@@ -10,28 +10,33 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
-@TableName("userinfo")
-@Setter
+/**
+ * @Description :商品类别表
+ * @Author : Administrator
+ * @Date : 2020-03-01 11:52
+ **/
+@TableName("category")
 @Getter
-public class UserInfo implements Serializable {
+@Setter
+public class Category implements Serializable {
+    @TableField("NAME")
+    private String name;
+
+    @TableField("USERID")
+    private long userID;
+
+    // 非表字段
+    @TableField(exist = false)
+    private int count;
+
+    @TableField(exist = false)
+    List<Product> productList;
+
+    // 默认字段
     @TableId(value = "ID")
     private long id = genId();
-
-    @TableField(value = "PERMISSION_ID")
-    private long permissionId;
-
-    @TableField("USER_NAME")
-    private String userName;
-
-    @TableField("PASSWORD")
-    private String password;
-
-    @TableField("FIRST_LOGINIP")
-    private String loginIp;
-
-    @TableField("SALT")
-    private String salt;
 
     @TableField("CREATE_TIME")
     private Date createTime;

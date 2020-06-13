@@ -29,10 +29,10 @@ public class UserPermissionLevel implements Serializable {
     private long id = genId();
 
     @TableField("CREATE_TIME")
-    private Date createTime = genCreateTime();
+    private Date createTime;
 
     @TableField("MODIFY_TIME")
-    private Date modifyTime = genModifyTime();
+    private Date modifyTime;
 
     @TableField("ENABLE")
     private String enable;
@@ -51,20 +51,6 @@ public class UserPermissionLevel implements Serializable {
 
     @TableField("ROLE")
     private Role role;
-
-    private Date genCreateTime() {
-        if (createTime != null) {
-            return createTime;
-        } else {
-            Calendar calendar = Calendar.getInstance();
-            return calendar.getTime();
-        }
-    }
-
-    private Date genModifyTime() {
-        Calendar calendar = Calendar.getInstance();
-        return calendar.getTime();
-    }
 
     private long genId() {
         if (id == 0l) {

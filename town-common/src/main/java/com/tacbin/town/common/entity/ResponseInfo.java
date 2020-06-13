@@ -16,8 +16,8 @@ public class ResponseInfo<T> implements Serializable {
 
     private T data;
 
-    public ResponseInfo(String message, Status status, T data) {
-        this.message = message;
+    public ResponseInfo(String errorMessage, Status status, T data) {
+        this.message = errorMessage;
         this.status = status;
         this.data = data;
     }

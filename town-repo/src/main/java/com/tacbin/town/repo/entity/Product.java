@@ -8,30 +8,48 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 
-@TableName("userinfo")
-@Setter
+/**
+ * @Description :商品表
+ * @Author : Administrator
+ * @Date : 2020-03-01 11:47
+ **/
+@TableName("products")
 @Getter
-public class UserInfo implements Serializable {
-    @TableId(value = "ID")
+@Setter
+public class Product implements Serializable {
+    @TableId("ID")
     private long id = genId();
 
-    @TableField(value = "PERMISSION_ID")
-    private long permissionId;
+    @TableField("USERID")
+    private long userID;
 
-    @TableField("USER_NAME")
-    private String userName;
+    @TableField("NAME")
+    private String name;
 
-    @TableField("PASSWORD")
-    private String password;
+    @TableField("CATEGORY_ID")
+    private long categoryId;
 
-    @TableField("FIRST_LOGINIP")
-    private String loginIp;
+    @TableField("VIEW_COUNT")
+    private int viewCount;
 
-    @TableField("SALT")
-    private String salt;
+    @TableField("PRICE")
+    private BigDecimal price;
+
+    @TableField("DESCRIPTION")
+    private String description;
+
+    @TableField("IMG1")
+    private String img1;
+
+    @TableField("IMG2")
+    private String img2;
+
+    @TableField("IMG3")
+    private String img3;
 
     @TableField("CREATE_TIME")
     private Date createTime;
@@ -50,9 +68,6 @@ public class UserInfo implements Serializable {
 
     @TableField("QUEUE")
     private int queue;
-
-    @TableField("DESCRIPTION")
-    private String description;
 
     private long genId() {
         if (id == 0l) {

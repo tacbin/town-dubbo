@@ -18,7 +18,8 @@ spring:
     password: tacbin@123
     username: root
     url: jdbc:mysql://119.23.42.141:3306/test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
-
+    hikari:
+      max-lifetime: 1000000
 dubbo:
   protocol:
     name: dubbo

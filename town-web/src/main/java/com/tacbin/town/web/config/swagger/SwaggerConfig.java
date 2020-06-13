@@ -25,7 +25,7 @@ public class SwaggerConfig {
                 SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.tacbin")) //这里写的是API接口所在的包位置
+                .apis(RequestHandlerSelectors.basePackage("com.tacbin.town.web.controller")) //这里写的是API接口所在的包位置
                 .paths(PathSelectors.any())
                 .build();
     }

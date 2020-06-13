@@ -7,31 +7,40 @@ import com.tacbin.town.common.utils.SnowFlakeUtil;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-@TableName("userinfo")
-@Setter
+/**
+ * @Description :用户信息拓展表
+ * @Author : Administrator
+ * @Date : 2020-03-13 18:37
+ **/
+@TableName("user_extend")
 @Getter
-public class UserInfo implements Serializable {
+@Setter
+public class UserExtend {
+    @TableField("USERID")
+    private long userId;
+
+    @TableField("SHOP_NAME")
+    private String shopName;
+
+    @TableField("EXPIRE_TIME")
+    private Date expireTime;
+
+    @TableField("NAME")
+    private String name;
+
+    @TableField("PHONE")
+    private String phone;
+
+    @TableField("WX_CHAT")
+    private String wxChat;
+
+
+    // 默认字段
     @TableId(value = "ID")
     private long id = genId();
-
-    @TableField(value = "PERMISSION_ID")
-    private long permissionId;
-
-    @TableField("USER_NAME")
-    private String userName;
-
-    @TableField("PASSWORD")
-    private String password;
-
-    @TableField("FIRST_LOGINIP")
-    private String loginIp;
-
-    @TableField("SALT")
-    private String salt;
 
     @TableField("CREATE_TIME")
     private Date createTime;
