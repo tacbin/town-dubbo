@@ -17,4 +17,6 @@ public interface CategoryService {
     boolean deleteCategory(long userId, String name);
 
     List<ProductEntity> queryProductsOfCategory(long userId,String name);
+
+    List<CategoryEntity> queryCustomerCategory(String userId);
 }

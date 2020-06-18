@@ -3,6 +3,9 @@ package com.tacbin.town.repo.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tacbin.town.repo.entity.Category;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Description :
@@ -11,5 +14,5 @@ import org.apache.ibatis.annotations.Mapper;
  **/
 @Mapper
 public interface ICategoryMapper extends BaseMapper<Category> {
-    Category queryProductsOfCategory(long userId, String name);
+    List<Category> queryProductNumsOfCategory(@Param("userId") String userId);
 }

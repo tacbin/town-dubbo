@@ -1,5 +1,6 @@
 package com.tacbin.town.api.service.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -33,8 +34,10 @@ public class ProductEntity implements Serializable {
 
     private String img3;
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date modifyTime;
 
     private String enable;

@@ -22,8 +22,12 @@ public class ProductServiceImpl implements ProductService {
     private IProductService iProductService;
 
     @Override
-    public List<ProductEntity> queryProducts(String categoryId) {
-        List<Product> products = iProductService.queryProducts(categoryId);
+    public List<ProductEntity> queryEnableProducts(String categoryId, String userId) {
+        List<Product> products = iProductService.queryEnableProducts(categoryId,userId);
+        return getProductEntities(products);
+    }
+
+    private List<ProductEntity> getProductEntities(List<Product> products) {
         if (products.size() == 0) {
             return new ArrayList<>();
         }
@@ -33,6 +37,12 @@ public class ProductServiceImpl implements ProductService {
         }
         PropertiesConvert.copyListObjectOfRepoToApi(products, productEntities);
         return productEntities;
+    }
+
+    @Override
+    public List<ProductEntity> queryProducts(String categoryId) {
+        List<Product> products = iProductService.queryProducts(categoryId);
+        return getProductEntities(products);
     }
 
     @Override

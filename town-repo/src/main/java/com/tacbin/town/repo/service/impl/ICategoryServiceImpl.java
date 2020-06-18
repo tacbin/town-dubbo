@@ -62,4 +62,9 @@ public class ICategoryServiceImpl implements ICategoryService {
     public Category queryProductsOfCategory(long userId, String name) {
         return null;
     }
+
+    @Override
+    public List<Category> queryCustomerCategory(String userId) {
+        return categoryMapper.queryProductNumsOfCategory(userId);
+    }
 }

@@ -18,6 +18,7 @@ spring:
     port: 6379
     timeout: 5000
     password: tacbin@123
+    database: 0
 embedded:
   zookeeper:
     port: 2181

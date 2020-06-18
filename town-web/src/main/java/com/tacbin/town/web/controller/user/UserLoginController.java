@@ -38,6 +38,12 @@ public class UserLoginController {
 
     private UserInfoBeanUtil userInfoBeanUtil;
 
+    @AnalysisLog
+    @RequestMapping(path = "/getUserId", method = RequestMethod.POST)
+    public ResponseInfo<String> getUserId() {
+        return new ResponseInfo<>("", Status.SUCCESS, userInfoBeanUtil.getCurrentUser().getId() + "");
+    }
+
     /**
      * 登录
      *

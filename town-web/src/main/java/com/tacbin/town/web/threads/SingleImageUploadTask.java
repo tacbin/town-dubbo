@@ -1,5 +1,6 @@
 package com.tacbin.town.web.threads;
 
+import com.tacbin.town.common.constants.AppConstants;
 import com.tacbin.town.common.utils.SnowFlakeUtil;
 import com.tacbin.town.web.threads.files.IFileUploadToOtherService;
 import com.tacbin.town.web.threads.files.UploadToQiNiu;
@@ -23,7 +24,6 @@ public class SingleImageUploadTask implements Runnable {
     private MultipartFile image;
     private String imgId;
     private String imgPath;
-    private String fileHost = "http://qbpriazf0.bkt.clouddn.com/";
 
     public SingleImageUploadTask(MultipartFile image) {
         this.image = image;
@@ -41,7 +41,7 @@ public class SingleImageUploadTask implements Runnable {
             log.info("文件上传完成,耗时:{}s", System.currentTimeMillis() / start / 1000);
             log.info("文件开始上传到其他存储服务");
             start = System.currentTimeMillis();
-            fileUploadToOtherService.upload(path, imgId);
+            fileUploadToOtherService.upload(path, imgPath);
             log.info("文件开始上传到其他存储服务完成,耗时:{}s", System.currentTimeMillis() / start / 1000);
         } catch (Exception e) {
             log.error("文件上传出错，错误信息:{}", e.getMessage());
@@ -75,6 +75,6 @@ public class SingleImageUploadTask implements Runnable {
     }
 
     public String getImgId() {
-        return fileHost + imgId;
+        return AppConstants.IMAGE_HOST + imgPath;
     }
 }

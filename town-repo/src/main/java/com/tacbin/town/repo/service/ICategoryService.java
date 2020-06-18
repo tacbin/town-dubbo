@@ -21,4 +21,6 @@ public interface ICategoryService {
     boolean deleteCategory(long userId, String name);
 
     Category queryProductsOfCategory(long userId, String name);
+
+    List<Category> queryCustomerCategory(String userId);
 }

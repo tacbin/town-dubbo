@@ -19,4 +19,6 @@ public interface IProductService {
     void updateProduct(Product product);
 
     void deleteProduct(String productId, long userId);
+
+    List<Product> queryEnableProducts(String categoryId, String userId);
 }

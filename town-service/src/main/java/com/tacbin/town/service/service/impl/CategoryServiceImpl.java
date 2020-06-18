@@ -3,9 +3,9 @@ package com.tacbin.town.service.service.impl;
 import com.tacbin.town.api.service.CategoryService;
 import com.tacbin.town.api.service.entity.CategoryEntity;
 import com.tacbin.town.api.service.entity.ProductEntity;
+import com.tacbin.town.common.utils.PropertiesConvert;
 import com.tacbin.town.repo.entity.Category;
 import com.tacbin.town.repo.service.ICategoryService;
-import com.tacbin.town.common.utils.PropertiesConvert;
 import lombok.AllArgsConstructor;
 import org.apache.dubbo.config.annotation.Service;
 
@@ -25,15 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryEntity> queryCategory(Long userId) {
         List<Category> categories = iCategoryService.queryCategory(userId);
-        if (categories == null) {
-            return new ArrayList<>();
-        }
-        List<CategoryEntity> categoryEntities = new ArrayList<>();
-        for (int i = 0; i < categories.size(); i++) {
-            categoryEntities.add(new CategoryEntity());
-        }
-        PropertiesConvert.copyListObjectOfRepoToApi(categories, categoryEntities);
-        return categoryEntities;
+        return getCategoryEntities(categories);
     }
 
     @Override
@@ -66,5 +58,23 @@ public class CategoryServiceImpl implements CategoryService {
     public List<ProductEntity> queryProductsOfCategory(long userId, String name) {
         iCategoryService.queryProductsOfCategory(userId,name);
         return null;
+    }
+
+    @Override
+    public List<CategoryEntity> queryCustomerCategory(String userId) {
+        List<Category> categories = iCategoryService.queryCustomerCategory(userId);
+        return getCategoryEntities(categories);
+    }
+
+    private List<CategoryEntity> getCategoryEntities(List<Category> categories) {
+        if (categories == null) {
+            return new ArrayList<>();
+        }
+        List<CategoryEntity> categoryEntities = new ArrayList<>();
+        for (int i = 0; i < categories.size(); i++) {
+            categoryEntities.add(new CategoryEntity());
+        }
+        PropertiesConvert.copyListObjectOfRepoToApi(categories, categoryEntities);
+        return categoryEntities;
     }
 }
