@@ -44,4 +44,7 @@ public class ProductDataVO implements Serializable {
     private int queue;
 
     private String description;
+
+    // 非表字段
+    private String locationCount;
 }

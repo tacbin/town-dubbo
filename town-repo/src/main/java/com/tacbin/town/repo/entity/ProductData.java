@@ -34,6 +34,9 @@ public class ProductData implements Serializable {
     @TableId(value = "PRODUCT_ID")
     private long productId;
 
+    @TableField(exist = false)
+    private String locationCount;
+
     // 默认字段
     @TableId(value = "ID")
     private long id = genId();

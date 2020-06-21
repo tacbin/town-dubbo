@@ -1,6 +1,9 @@
 package com.tacbin.town.api.service;
 
 import com.tacbin.town.api.service.entity.ProductDataEntity;
+import com.tacbin.town.api.service.entity.ProductEntity;
+
+import java.util.List;
 
 /**
  * @Description :
@@ -9,4 +12,10 @@ import com.tacbin.town.api.service.entity.ProductDataEntity;
  **/
 public interface ProductDataService {
     void productViewCount(ProductDataEntity productDataEntity);
+
+    List<ProductEntity> queryLastTenProducts(long userId);
+
+    List<ProductEntity> queryTodayTenProducts(long id);
+
+    List<ProductDataEntity> queryViewerOfChina(long id);
 }

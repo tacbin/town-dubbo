@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tacbin.town.repo.mapper.IProductDataMapper">
+
+    <select id="queryLastDaysProducts" resultType="com.tacbin.town.repo.entity.Product">
+    SELECT
+	t3.number as viewCount,
+	t3.productId as id,
+	t4.NAME as name
+FROM
+	(
+	SELECT
+		t1.`id` AS productId,
+		count( t2.ID ) AS number
+	FROM
+		products AS t1
+		INNER JOIN product_data AS t2 ON t1.ID = t2.PRODUCT_ID
+	WHERE
+		t1.USERID = #{userId}
+		AND t2.CREATE_TIME > #{daysAgo}
+	GROUP BY
+		productId
+	ORDER BY
+		number DESC
+		LIMIT 10
+	) t3
+	INNER JOIN products AS t4 ON t3.productId = t4.id;
+
+    </select>
+
+    <select id="countViewerOfCountry" resultType="com.tacbin.town.repo.entity.ProductData">
+		SELECT
+	count( t1.id ) AS locationCount,
+	t1.LOCATION AS LOCATION
+FROM
+	product_data AS t1
+	INNER JOIN products AS t2 ON t1.PRODUCT_ID = t2.ID
+WHERE
+	USERID = #{userId}
+GROUP BY
+	LOCATION
+ORDER BY
+	locationCount DESC
+	LIMIT 10;
+	</select>
+
+</mapper>
