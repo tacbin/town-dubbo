@@ -38,17 +38,13 @@ public class ShiroAuthFilterConfig {
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
         // 登录页，登录接口
-        chainDefinition.addPathDefinition("/user/login", "anon");
+        chainDefinition.addPathDefinition("/customer/**", "anon");
         chainDefinition.addPathDefinition("/user/isLogin", "anon");
-        // 不要登录态的静态资源
-        chainDefinition.addPathDefinition("/index.html", "anon");
-        chainDefinition.addPathDefinition("/login.html", "anon");
-        chainDefinition.addPathDefinition("/assets/**", "anon");
-        chainDefinition.addPathDefinition("/images/**", "anon");
+        chainDefinition.addPathDefinition("/user/login", "anon");
         // swagger
         chainDefinition.addPathDefinition("/swagger-ui.html", "anon");
         // 其余页面都需登录
-        chainDefinition.addPathDefinition("/**", "anon");//authc
+        chainDefinition.addPathDefinition("/**", "authc");//authc
         return chainDefinition;
     }
 

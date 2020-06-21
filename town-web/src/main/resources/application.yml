@@ -40,12 +40,10 @@ wx:
 #        secret: 1111�����ںŵ�appsecret��
 #        token: 111 token
 #        aesKey: 111 ���ӿ��������EncodingAESKeyֵ��
-server:
-  port: 9000
 
 # shiro
 shiro:
-  loginUrl: ../login.html
+  loginUrl: 404.html
 
 custom:
   md-times: 2

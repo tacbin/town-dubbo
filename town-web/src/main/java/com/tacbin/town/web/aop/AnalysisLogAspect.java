@@ -21,7 +21,7 @@ public class AnalysisLogAspect {
         long start = System.currentTimeMillis();
         Object obj = proceedingJoinPoint.proceed();
         if (proceedingJoinPoint instanceof MethodInvocationProceedingJoinPoint) {
-            log.info("{} 请求响应了{}毫秒", proceedingJoinPoint.getSignature().toString(), (System.currentTimeMillis() - start));
+//            log.info("{} 请求响应了{}毫秒", proceedingJoinPoint.getSignature().toString(), (System.currentTimeMillis() - start));
         }
         return obj;
     }

@@ -52,6 +52,7 @@ public class HttpUtils {
             connection.connect();
             in = new BufferedReader(new InputStreamReader(connection.getInputStream(), contentType));
             String line;
+            log.info("param{}", param);
             while ((line = in.readLine()) != null) {
                 result.append(line);
             }
