@@ -35,6 +35,27 @@ public class FilesController {
         return new ResponseInfo<>(null, Status.SUCCESS, url);
     }
 
+    @RequestMapping(path = "/twoImagesUpload", method = RequestMethod.POST)
+    @AnalysisLog
+    public ResponseInfo<String[]> uploadThreeFile(MultipartFile file0, MultipartFile file1) throws Exception {
+        long file0Size = file0 == null ? 0 : file0.getSize();
+        long file1Size = file1 == null ? 0 : file1.getSize();
+        log.info("two文件大小{}k", (file0Size + file1Size) / 1024);
+        String[] urls = new String[3];
+        MultipartFile[] files = {file0, file1};
+        for (int i = 0; i < files.length; i++) {
+            if (files[i] == null) {
+                continue;
+            }
+            ImageValidationUtil.imageValidate(files[i]);
+            SingleImageUploadTask task = new SingleImageUploadTask(files[i]);
+            TownThreadFactory.execute(task);
+            urls[i] = task.getImgId();
+        }
+        // 礼貌性暂停一秒
+        Thread.sleep(1000);
+        return new ResponseInfo<>(null, Status.SUCCESS, urls);
+    }
 
     @RequestMapping(path = "/threeImagesUpload", method = RequestMethod.POST)
     @AnalysisLog

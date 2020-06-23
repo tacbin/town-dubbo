@@ -15,6 +15,7 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -51,13 +52,13 @@ public class CategoryController {
 
     @AnalysisLog
     @RequestMapping(path = "/create", method = RequestMethod.POST)
-    public ResponseInfo<CategoryVO> createCategory(String name) {
+    public ResponseInfo<CategoryVO> createCategory(String name, int queue) {
         UserInfo user = userInfoBeanUtil.getCurrentUser();
         CategoryEntity entity = categoryService.queryCategoryByName(user.getId(), name);
         if (entity != null) {
             return new ResponseInfo<>("已经存在同名的目录!", Status.FAIL, null);
         }
-        CategoryEntity categoryEntity = categoryService.createCategory(user.getId(), name);
+        CategoryEntity categoryEntity = categoryService.createCategory(user.getId(), name, queue);
         CategoryVO categoryVO = new CategoryVO();
         PropertiesConvert.copyObjectRepoToApi(categoryEntity, categoryVO);
         return new ResponseInfo<>("", Status.SUCCESS, categoryVO);
@@ -65,13 +66,13 @@ public class CategoryController {
 
     @AnalysisLog
     @RequestMapping(path = "/changeName", method = RequestMethod.POST)
-    public ResponseInfo<Boolean> changeName(String oldName, String newName) {
+    public ResponseInfo<Boolean> changeName(String oldName, @RequestParam(required = false) String newName, @RequestParam(required = false) int queue) {
         UserInfo user = userInfoBeanUtil.getCurrentUser();
         CategoryEntity entity = categoryService.queryCategoryByName(user.getId(), newName);
         if (entity != null) {
             return new ResponseInfo<>("新目录名已经存在!", Status.FAIL, null);
         }
-        boolean isSuccess = categoryService.changeName(user.getId(), oldName, newName);
+        boolean isSuccess = categoryService.changeName(user.getId(), oldName, newName,queue);
         if (isSuccess) {
             return new ResponseInfo<>("", Status.SUCCESS, null);
         } else {

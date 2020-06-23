@@ -5,6 +5,7 @@ import com.tacbin.town.repo.entity.Category;
 import com.tacbin.town.repo.mapper.ICategoryMapper;
 import com.tacbin.town.repo.service.ICategoryService;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,14 +23,15 @@ public class ICategoryServiceImpl implements ICategoryService {
     @Override
     public List<Category> queryCategory(Long userId) {
         QueryWrapper<Category> wrapper = new QueryWrapper<>();
-        wrapper.lambda().eq(Category::getUserID, userId);
+        wrapper.lambda().eq(Category::getUserID, userId).orderByAsc(Category::getQueue);
         return categoryMapper.selectList(wrapper);
     }
 
     @Override
-    public Category createCategory(Long userId, String name) {
+    public Category createCategory(Long userId, String name, int queue) {
         Category category = new Category();
         category.setName(name);
+        category.setQueue(queue);
         category.setUserID(userId);
         categoryMapper.insert(category);
         return categoryMapper.selectById(category.getId());
@@ -43,9 +45,14 @@ public class ICategoryServiceImpl implements ICategoryService {
     }
 
     @Override
-    public boolean changeName(Long userId, String oldName, String newName) {
+    public boolean changeName(Long userId, String oldName, String newName, int queue) {
         Category category = queryCategoryByName(userId, oldName);
-        category.setName(newName);
+        if (!StringUtils.isEmpty(newName)) {
+            category.setName(newName);
+        }
+        if (queue != 0) {
+            category.setQueue(queue);
+        }
         int result = categoryMapper.updateById(category);
         return result > 0 ? true : false;
     }

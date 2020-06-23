@@ -12,11 +12,11 @@ import java.util.List;
 public interface ICategoryService {
     List<Category> queryCategory(Long userId);
 
-    Category createCategory(Long userId, String name);
+    Category createCategory(Long userId, String name, int queue);
 
     Category queryCategoryByName(long userId, String name);
 
-    boolean changeName(Long userId, String oldName, String newName);
+    boolean changeName(Long userId, String oldName, String newName, int queue);
 
     boolean deleteCategory(long userId, String name);
 

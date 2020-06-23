@@ -8,11 +8,11 @@ import java.util.List;
 public interface CategoryService {
     List<CategoryEntity> queryCategory(Long userId);
 
-    CategoryEntity createCategory(long id, String name);
+    CategoryEntity createCategory(long id, String name, int queue);
 
     CategoryEntity queryCategoryByName(long id, String name);
 
-    boolean changeName(long id, String oldName, String newName);
+    boolean changeName(long id, String oldName, String newName, int queue);
 
     boolean deleteCategory(long userId, String name);
 

@@ -5,11 +5,11 @@
     <parent>
         <groupId>com.tacbin.town</groupId>
         <artifactId>wechat</artifactId>
-        <version>1.0-wx</version>
+        <version>1.1-town</version>
     </parent>
     <groupId>com.tacbin.wexin.service</groupId>
     <artifactId>town-service</artifactId>
-    <version>1.0-wechat</version>
+    <version>1.1-town</version>
     <name>town-service</name>
 
     <properties>
@@ -32,13 +32,13 @@
         <dependency>
             <groupId>com.tacbin.town</groupId>
             <artifactId>town-service-api</artifactId>
-            <version>1.0-wx</version>
+            <version>1.1-town</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.tacbin.town.repo</groupId>
             <artifactId>town-repo</artifactId>
-            <version>1.0-wx</version>
+            <version>1.1-town</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

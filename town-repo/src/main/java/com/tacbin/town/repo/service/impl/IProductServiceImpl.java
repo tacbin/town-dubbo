@@ -22,7 +22,7 @@ public class IProductServiceImpl implements IProductService {
     @Override
     public List<Product> queryProducts(String categoryId) {
         QueryWrapper<Product> wrapper = new QueryWrapper<>();
-        wrapper.lambda().eq(Product::getCategoryId, categoryId);
+        wrapper.lambda().eq(Product::getCategoryId, categoryId).orderByAsc(Product::getQueue);
         return getProducts(wrapper);
     }
 
@@ -61,7 +61,7 @@ public class IProductServiceImpl implements IProductService {
     @Override
     public List<Product> queryEnableProducts(String categoryId, String userId) {
         QueryWrapper<Product> wrapper = new QueryWrapper<>();
-        wrapper.lambda().eq(Product::getCategoryId, categoryId).eq(Product::getEnable, 1).eq(Product::getUserID, userId);
+        wrapper.lambda().eq(Product::getCategoryId, categoryId).eq(Product::getEnable, 1).eq(Product::getUserID, userId).orderByAsc(Product::getQueue);
         return getProducts(wrapper);
     }
 

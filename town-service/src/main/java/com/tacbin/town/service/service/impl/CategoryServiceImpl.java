@@ -29,8 +29,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryEntity createCategory(long id, String name) {
-        Category category = iCategoryService.createCategory(id, name);
+    public CategoryEntity createCategory(long id, String name, int queue) {
+        Category category = iCategoryService.createCategory(id, name,queue);
         CategoryEntity categoryEntity = new CategoryEntity();
         PropertiesConvert.copyObjectRepoToApi(category, categoryEntity);
         return category == null ? null : categoryEntity;
@@ -45,8 +45,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public boolean changeName(long userId, String oldName, String newName) {
-        return iCategoryService.changeName(userId,oldName,newName);
+    public boolean changeName(long userId, String oldName, String newName, int queue) {
+        return iCategoryService.changeName(userId,oldName,newName,queue);
     }
 
     @Override

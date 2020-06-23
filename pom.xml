@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.tacbin.town</groupId>
     <artifactId>wechat</artifactId>
-    <version>1.0-wx</version>
+    <version>1.1-town</version>
     <name>wechat</name>
     <packaging>pom</packaging>
 
