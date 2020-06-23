@@ -1,5 +1,6 @@
 package com.tacbin.town.web.controller.user;
 
+import com.google.common.cache.CacheBuilder;
 import com.tacbin.town.api.service.entity.UserInfo;
 import com.tacbin.town.api.service.shiro.IUserService;
 import com.tacbin.town.common.entity.ResponseInfo;
@@ -7,6 +8,7 @@ import com.tacbin.town.common.entity.Status;
 import com.tacbin.town.web.aop.AnalysisLog;
 import com.tacbin.town.web.config.shiro.realm.MyShiroRealm;
 import com.tacbin.town.web.util.UserInfoBeanUtil;
+import com.tacbin.town.web.util.ip.IpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
@@ -17,10 +19,14 @@ import org.apache.shiro.cache.Cache;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Description :
@@ -38,6 +44,13 @@ public class UserLoginController {
 
     private UserInfoBeanUtil userInfoBeanUtil;
 
+    private final static int LOGIN_WAITING_TIME = 3;
+
+    // 为true则几秒后再试，false或空则走校验
+    private com.google.common.cache.Cache<String, Boolean> loginCache = CacheBuilder.newBuilder()
+            .expireAfterWrite(LOGIN_WAITING_TIME, TimeUnit.SECONDS)
+            .build();
+
     @AnalysisLog
     @RequestMapping(path = "/getUserId", method = RequestMethod.POST)
     public ResponseInfo<String> getUserId() {
@@ -53,8 +66,12 @@ public class UserLoginController {
      */
     @AnalysisLog
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public ResponseInfo<Boolean> login(@RequestParam String userName, @RequestParam String password) {
-        return userLoginIn(userName, password);
+    public ResponseInfo<Boolean> login(@RequestParam String userName, @RequestParam String password, HttpServletRequest request) {
+        String ip = IpUtils.getIpAddr(request);
+        if (loginCache.getIfPresent(ip) != null) {
+            return new ResponseInfo("还没过等待时间", Status.FAIL, null);
+        }
+        return userLoginIn(userName, password, ip);
     }
 
     /**
@@ -102,7 +119,7 @@ public class UserLoginController {
      * @param name     用户名
      * @param password 密码
      */
-    private ResponseInfo userLoginIn(String name, String password) {
+    private ResponseInfo userLoginIn(String name, String password, String ip) {
         UsernamePasswordToken token = new UsernamePasswordToken(name, password);
         Subject subject = SecurityUtils.getSubject();
         try {
@@ -112,7 +129,8 @@ public class UserLoginController {
         } catch (Exception e) {
             // 身份验证失败
             log.error(name + " 身份认证失败 ");
-            return ResponseInfo.builder().message("登录失败,账号或密码错误").status(Status.FAIL).build();
+            loginCache.put(ip, true);
+            return ResponseInfo.builder().message("登录失败,账号或密码错误。" + LOGIN_WAITING_TIME + "秒后再试").status(Status.FAIL).build();
         }
         return ResponseInfo.builder().message("登录成功").status(Status.SUCCESS).build();
     }
