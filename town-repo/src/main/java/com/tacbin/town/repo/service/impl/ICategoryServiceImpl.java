@@ -50,7 +50,7 @@ public class ICategoryServiceImpl implements ICategoryService {
         if (!StringUtils.isEmpty(newName)) {
             category.setName(newName);
         }
-        if (queue != 0) {
+        if (queue != -1) {
             category.setQueue(queue);
         }
         int result = categoryMapper.updateById(category);
