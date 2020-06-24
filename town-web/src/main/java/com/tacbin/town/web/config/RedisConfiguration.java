@@ -7,7 +7,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
- * @author julu
+ * @author tacbin
  * Redis配置
  */
 @Configuration
