@@ -8,7 +8,7 @@ spring:
   application:
     name: dubbo-registry-zookeeper-consumer
   redis:
-    host: 119.23.42.141
+    host: 42.194.223.190
     lettuce:
       pool:
         max-active: 8

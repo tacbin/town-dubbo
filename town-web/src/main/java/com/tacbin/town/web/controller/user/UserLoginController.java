@@ -70,8 +70,11 @@ public class UserLoginController {
         String ip = IpUtils.getIpAddr(request);
         if (loginCache.getIfPresent(ip) != null) {
             return new ResponseInfo("还没过等待时间", Status.FAIL, null);
+        } else if (isLogin().getData()) {
+            return new ResponseInfo<>("登录成功", Status.SUCCESS, null);
+        } else {
+            return userLoginIn(userName, password, ip);
         }
-        return userLoginIn(userName, password, ip);
     }
 
     /**

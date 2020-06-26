@@ -2,7 +2,7 @@ spring:
   application:
     name: dubbo-registry-zookeeper-provider
   redis:
-    host: 119.23.42.141
+    host: 42.194.223.190
     lettuce:
       pool:
         max-active: 8
@@ -17,7 +17,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: tacbin@123
     username: root
-    url: jdbc:mysql://119.23.42.141:3306/test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://42.194.223.190:3306/town?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
     hikari:
       max-lifetime: 1000000
 dubbo:
