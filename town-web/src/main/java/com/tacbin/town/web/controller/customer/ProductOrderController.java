@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit;
  * @Date : 2020-06-27 12:21
  **/
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/customer/order")
 public class ProductOrderController {
     @Autowired
     private AmqpTemplate rabbitTemplate;
