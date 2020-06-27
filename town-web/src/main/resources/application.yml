@@ -7,6 +7,11 @@ spring:
       enabled: true
   application:
     name: dubbo-registry-zookeeper-consumer
+  rabbitmq:
+    host: 42.194.223.190
+    password: tacbin@123
+    port: 5672
+    username: guest
   redis:
     host: 42.194.223.190
     lettuce:
@@ -22,6 +27,7 @@ spring:
 embedded:
   zookeeper:
     port: 2181
+
 dubbo:
   registry:
     address: zookeeper://127.0.0.1:${embedded.zookeeper.port}

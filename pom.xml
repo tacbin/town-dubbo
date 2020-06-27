@@ -28,6 +28,7 @@
         <module>town-repo</module>
         <module>town-common</module>
         <module>town-service-api</module>
+        <module>town-mq</module>
     </modules>
 
     <dependencies>

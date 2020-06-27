@@ -44,7 +44,7 @@ public class ShiroAuthFilterConfig {
         // swagger
         chainDefinition.addPathDefinition("/swagger-ui.html", "anon");
         // 其余页面都需登录
-        chainDefinition.addPathDefinition("/**", "authc");//authc
+//        chainDefinition.addPathDefinition("/**", "authc");//authc
         return chainDefinition;
     }
 
