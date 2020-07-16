@@ -7,7 +7,7 @@ package com.tacbin.town.common.constants;
  **/
 public class AppConstants {
     /** 图片的ip或域名 qbpriazf0.bkt.clouddn.com/  localhost:9000 */
-    public static final String IMAGE_HOST = "http://qbpriazf0.bkt.clouddn.com/";
+    public static final String IMAGE_HOST = "http://images.tacbin.club/";
 
     public static final String ROUTER = "router";
     /** 接口配置信息校验的token */
