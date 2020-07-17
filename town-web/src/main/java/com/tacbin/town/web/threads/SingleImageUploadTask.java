@@ -27,8 +27,8 @@ public class SingleImageUploadTask implements Runnable {
 
     public SingleImageUploadTask(MultipartFile image) {
         this.image = image;
-        imgId = SnowFlakeUtil.generateId() + image.getOriginalFilename();
-        imgPath = "/images/" + imgId;
+        imgId = SnowFlakeUtil.generateId() + "";
+        imgPath = "images/" + imgId;
         fileUploadToOtherService = new UploadToQiNiu();
     }
 
