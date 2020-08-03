@@ -55,10 +55,6 @@ public class SingleImageUploadTask implements Runnable {
      * @throws IOException
      */
     private String uploadSingleImageToServer() throws Exception {
-        if (image == null || image.isEmpty()) {
-            log.info("文件为空");
-            return null;
-        }
         String filePath = "user.home";
         String imgSrc;
         // 获取根目录；linux->root ; windows->C:\Users\Administrator
