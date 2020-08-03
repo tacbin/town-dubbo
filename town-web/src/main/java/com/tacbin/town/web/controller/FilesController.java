@@ -40,7 +40,7 @@ public class FilesController {
         long file0Size = file0 == null ? 0 : file0.getSize();
         long file1Size = file1 == null ? 0 : file1.getSize();
         log.info("two文件大小{}k", (file0Size + file1Size) / 1024);
-        String[] urls = new String[3];
+        String[] urls = new String[2];
         MultipartFile[] files = {file0, file1};
         for (int i = 0; i < files.length; i++) {
             if (files[i] == null) {
