@@ -30,8 +30,7 @@ public class FilesController {
         SingleImageUploadTask task = new SingleImageUploadTask(file);
         TownThreadFactory.execute(task);
         String url = task.getImgId();
-        // 礼貌性暂停一秒
-        Thread.sleep(1000);
+        log.info("图片url", url);
         return new ResponseInfo<>(null, Status.SUCCESS, url);
     }
 
@@ -52,8 +51,7 @@ public class FilesController {
             TownThreadFactory.execute(task);
             urls[i] = task.getImgId();
         }
-        // 礼貌性暂停一秒
-        Thread.sleep(1000);
+        log.info("两张图片url", urls);
         return new ResponseInfo<>(null, Status.SUCCESS, urls);
     }
 
