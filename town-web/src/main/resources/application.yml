@@ -1,10 +1,10 @@
 spring:
-  # 文件大小
-  servlet:
-    multipart:
-      max-file-size: 15MB
-      max-request-size: 15MB
-      enabled: true
+#  # 文件大小
+#  servlet:
+#    multipart:
+#      max-file-size: 15MB
+#      max-request-size: 15MB
+#      enabled: true
   application:
     name: dubbo-registry-zookeeper-consumer
   rabbitmq:

@@ -8,12 +8,14 @@ import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Description :
  * @Author : Administrator
  * @Date : 2020-06-10 22:31
  **/
+@Slf4j
 public class UploadToQiNiu implements IFileUploadToOtherService {
     private final static String accessKey = "q4h_EU7JF2emdNzmvb2HmxA6BgcEg8ngA3oehRbz";
 
@@ -31,17 +33,9 @@ public class UploadToQiNiu implements IFileUploadToOtherService {
         Auth auth = Auth.create(accessKey, secretKey);
         String upToken = auth.uploadToken(bucket);
         try {
-            Response response = uploadManager.put(localFilePath, key, upToken);
-            //解析上传成功的结果
-            DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
-        } catch (QiniuException ex) {
-            Response r = ex.response;
-            System.err.println(r.toString());
-            try {
-                System.err.println(r.bodyString());
-            } catch (QiniuException ex2) {
-                //ignore
-            }
+            uploadManager.put(localFilePath, key, upToken);
+        } catch (QiniuException e) {
+            e.printStackTrace();
         }
     }
 }
