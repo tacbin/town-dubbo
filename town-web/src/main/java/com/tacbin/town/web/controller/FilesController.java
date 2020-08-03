@@ -42,14 +42,18 @@ public class FilesController {
         log.info("two文件大小{}k", (file0Size + file1Size) / 1024);
         String[] urls = new String[2];
         MultipartFile[] files = {file0, file1};
+        SingleImageUploadTask[] tasks = new SingleImageUploadTask[2];
         for (int i = 0; i < files.length; i++) {
             if (files[i] == null) {
                 continue;
             }
             ImageValidationUtil.imageValidate(files[i]);
             SingleImageUploadTask task = new SingleImageUploadTask(files[i]);
-            TownThreadFactory.execute(task);
+            tasks[i] = task;
             urls[i] = task.getImgId();
+        }
+        for (SingleImageUploadTask task : tasks) {
+            TownThreadFactory.execute(task);
         }
         log.info("两张图片url:{}", urls);
         return new ResponseInfo<>(null, Status.SUCCESS, urls);
