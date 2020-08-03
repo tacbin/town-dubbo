@@ -56,6 +56,7 @@ public class SingleImageUploadTask implements Runnable {
      */
     private String uploadSingleImageToServer() throws Exception {
         if (image == null || image.isEmpty()) {
+            log.info("文件为空");
             return null;
         }
         String filePath = "user.home";
@@ -69,6 +70,7 @@ public class SingleImageUploadTask implements Runnable {
         byte[] bytes = image.getBytes();
         // 生成路径，上传至具体的目录下例如，C:\Users\Administrator\app\images\
         imgSrc = userHome + "/app/images/" + imgId;
+        log.info("本地存储文件的地址为:{}", imgSrc);
         Path path = Paths.get(imgSrc);
         Files.write(path, bytes);
         return imgSrc;
