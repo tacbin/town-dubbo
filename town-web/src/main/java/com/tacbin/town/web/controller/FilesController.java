@@ -77,8 +77,6 @@ public class FilesController {
             TownThreadFactory.execute(task);
             urls[i] = task.getImgId();
         }
-        // 礼貌性暂停一秒
-        Thread.sleep(1000);
         return new ResponseInfo<>(null, Status.SUCCESS, urls);
     }
 }

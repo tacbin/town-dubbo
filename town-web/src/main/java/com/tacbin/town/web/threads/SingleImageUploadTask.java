@@ -37,8 +37,7 @@ public class SingleImageUploadTask implements Runnable {
         long start = System.currentTimeMillis();
         log.info("文件开始上传");
         try {
-            uploadSingleImageToServer();
-            log.info("文件上传完成,耗时:{}s", System.currentTimeMillis() / start / 1000);
+//            uploadSingleImageToServer();
             log.info("文件开始上传到其他存储服务");
             start = System.currentTimeMillis();
             fileUploadToOtherService.upload2(image.getInputStream(), imgPath);
@@ -73,6 +72,6 @@ public class SingleImageUploadTask implements Runnable {
     }
 
     public String getImgId() {
-        return AppConstants.IMAGE_HOST + imgPath;
+        return "http://images.tacbin.club/" + imgPath;
     }
 }
