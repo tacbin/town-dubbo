@@ -25,7 +25,7 @@ dubbo:
     name: dubbo
     port: -1
   registry:
-    address: zookeeper://127.0.0.1:2181
+    address: zookeeper://129.204.189.111:2181
   scan:
     base-packages: com.tacbin.town.service.service
 
