@@ -95,7 +95,7 @@
                         <configuration>
                             <skipAssembly>false</skipAssembly>
                             <descriptors>
-                                <descriptor>${project.name}/src/main/assembly/assembly.xml</descriptor>
+                                <descriptor>/src/main/assembly/assembly.xml</descriptor>
                             </descriptors>
                             <finalName>${project.parent.artifactId}</finalName>
                         </configuration>
