@@ -53,5 +53,3 @@ shiro:
 
 custom:
   md-times: 2
-server:
-  port: 9001
