@@ -2,9 +2,12 @@ package com.tacbin.town.web.controller;
 
 import com.tacbin.town.common.entity.ResponseInfo;
 import com.tacbin.town.common.entity.Status;
+import com.tacbin.town.common.utils.SnowFlakeUtil;
 import com.tacbin.town.web.aop.AnalysisLog;
 import com.tacbin.town.web.threads.SingleImageUploadTask;
 import com.tacbin.town.web.threads.TownThreadFactory;
+import com.tacbin.town.web.threads.files.IFileUploadToOtherService;
+import com.tacbin.town.web.threads.files.UploadToQiNiu;
 import com.tacbin.town.web.util.ImageValidationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Description :文件处理
@@ -22,40 +29,33 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/files")
 @Slf4j
 public class FilesController {
+    private static final IFileUploadToOtherService uploadService = new UploadToQiNiu();
+
     @RequestMapping(path = "/oneImageUpload", method = RequestMethod.POST)
     @AnalysisLog
     public ResponseInfo<String> uploadSingleFile(MultipartFile file) throws Exception {
         log.info("single文件大小{}k", file.getSize() / 1024);
-        ImageValidationUtil.imageValidate(file);
-        SingleImageUploadTask task = new SingleImageUploadTask(file);
-        TownThreadFactory.execute(task);
-        String url = task.getImgId();
-        log.info("图片url:{}", url);
-        return new ResponseInfo<>(null, Status.SUCCESS, url);
+        String fileName = SnowFlakeUtil.generateId() + file.getOriginalFilename();
+        uploadService.upload2(file.getInputStream(), fileName);
+        return new ResponseInfo<>(null, Status.SUCCESS, "http://images.tacbin.club/" + fileName);
     }
 
     @RequestMapping(path = "/twoImagesUpload", method = RequestMethod.POST)
     @AnalysisLog
     public ResponseInfo<String[]> uploadThreeFile(MultipartFile file0, MultipartFile file1) throws Exception {
-        long file0Size = file0 == null ? 0 : file0.getSize();
-        long file1Size = file1 == null ? 0 : file1.getSize();
-        log.info("two文件大小{}k", (file0Size + file1Size) / 1024);
+        List<MultipartFile> fileList = Arrays.asList(file0, file1);
         String[] urls = new String[2];
-        MultipartFile[] files = {file0, file1};
-        SingleImageUploadTask[] tasks = new SingleImageUploadTask[2];
-        for (int i = 0; i < files.length; i++) {
-            if (files[i] == null) {
+        int i = 0;
+        for (MultipartFile file : fileList) {
+            if (file == null) {
+                i++;
                 continue;
             }
-            ImageValidationUtil.imageValidate(files[i]);
-            SingleImageUploadTask task = new SingleImageUploadTask(files[i]);
-            tasks[i] = task;
-            urls[i] = task.getImgId();
+            String fileName = SnowFlakeUtil.generateId() + file.getOriginalFilename();
+            uploadService.upload2(file.getInputStream(), fileName);
+            urls[i] = "http://images.tacbin.club/" + fileName;
+            i++;
         }
-        for (SingleImageUploadTask task : tasks) {
-            TownThreadFactory.execute(task);
-        }
-        log.info("两张图片url:{}", urls);
         return new ResponseInfo<>(null, Status.SUCCESS, urls);
     }
 
@@ -66,19 +66,19 @@ public class FilesController {
         long file1Size = file1 == null ? 0 : file1.getSize();
         long file2Size = file2 == null ? 0 : file2.getSize();
         log.info("three文件大小{}k", (file0Size + file1Size + file2Size) / 1024);
+        List<MultipartFile> fileList = Arrays.asList(file0, file1);
         String[] urls = new String[3];
-        MultipartFile[] files = {file0, file1, file2};
-        for (int i = 0; i < files.length; i++) {
-            if (files[i] == null) {
+        int i = 0;
+        for (MultipartFile file : fileList) {
+            if (file == null) {
+                i++;
                 continue;
             }
-            ImageValidationUtil.imageValidate(files[i]);
-            SingleImageUploadTask task = new SingleImageUploadTask(files[i]);
-            TownThreadFactory.execute(task);
-            urls[i] = task.getImgId();
+            String fileName = SnowFlakeUtil.generateId() + file.getOriginalFilename();
+            uploadService.upload2(file.getInputStream(), fileName);
+            urls[i] = "http://images.tacbin.club/" + fileName;
+            i++;
         }
-        // 礼貌性暂停一秒
-        Thread.sleep(1000);
         return new ResponseInfo<>(null, Status.SUCCESS, urls);
     }
 }

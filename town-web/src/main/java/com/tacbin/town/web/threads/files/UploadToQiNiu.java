@@ -10,6 +10,8 @@ import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.InputStream;
+
 /**
  * @Description :
  * @Author : Administrator
@@ -36,6 +38,22 @@ public class UploadToQiNiu implements IFileUploadToOtherService {
             uploadManager.put(localFilePath, key, upToken);
         } catch (QiniuException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void upload2(InputStream inputStream, String fileName) {
+        //构造一个带指定 Region 对象的配置类
+        Configuration cfg = new Configuration(Region.region2());
+        UploadManager uploadManager = new UploadManager(cfg);
+        //默认不指定key的情况下，以文件内容的hash值作为文件名
+        String key = fileName;
+        Auth auth = Auth.create(accessKey, secretKey);
+        String upToken = auth.uploadToken(bucket);
+        try {
+            uploadManager.put(inputStream, fileName, upToken, null, null);
+        } catch (QiniuException e) {
+            log.error("上传至七牛云发生错误:{}", e);
         }
     }
 }

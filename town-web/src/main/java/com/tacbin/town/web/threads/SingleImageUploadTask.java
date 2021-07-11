@@ -37,11 +37,10 @@ public class SingleImageUploadTask implements Runnable {
         long start = System.currentTimeMillis();
         log.info("文件开始上传");
         try {
-            String path = uploadSingleImageToServer();
-            log.info("文件上传完成,耗时:{}s", System.currentTimeMillis() / start / 1000);
+//            uploadSingleImageToServer();
             log.info("文件开始上传到其他存储服务");
             start = System.currentTimeMillis();
-            fileUploadToOtherService.upload(path, imgPath);
+            fileUploadToOtherService.upload2(image.getInputStream(), imgPath);
             log.info("文件开始上传到其他存储服务完成,耗时:{}s", System.currentTimeMillis() / start / 1000);
         } catch (Exception e) {
             log.error("文件上传出错，错误信息:{}", e.getMessage());
@@ -73,6 +72,6 @@ public class SingleImageUploadTask implements Runnable {
     }
 
     public String getImgId() {
-        return AppConstants.IMAGE_HOST + imgPath;
+        return "http://images.tacbin.club/" + imgPath;
     }
 }
