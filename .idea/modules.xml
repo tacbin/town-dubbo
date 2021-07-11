@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/town-common/town-common.iml" filepath="$PROJECT_DIR$/town-common/town-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/town-mq/town-mq.iml" filepath="$PROJECT_DIR$/town-mq/town-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/town-repo/town-repo.iml" filepath="$PROJECT_DIR$/town-repo/town-repo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/town-service/town-service.iml" filepath="$PROJECT_DIR$/town-service/town-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/town-service-api/town-service-api.iml" filepath="$PROJECT_DIR$/town-service-api/town-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/town-web/town-web.iml" filepath="$PROJECT_DIR$/town-web/town-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/wechat.iml" filepath="$PROJECT_DIR$/wechat.iml" />
       <module fileurl="file://$PROJECT_DIR$/weixin-common/weixin-common.iml" filepath="$PROJECT_DIR$/weixin-common/weixin-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/weixin-repo/weixin-repo.iml" filepath="$PROJECT_DIR$/weixin-repo/weixin-repo.iml" />

@@ -6,18 +6,40 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="weixin-repo" />
         <module name="weixin-service" />
-        <module name="weixin-common" />
         <module name="weixin-web" />
+        <module name="town-repo" />
+        <module name="town-mq" />
+        <module name="weixin-common" />
+        <module name="town-service" />
+        <module name="weixin-repo" />
+        <module name="town-common" />
+        <module name="town-web" />
+        <module name="town-service-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="town-common" target="1.8" />
+      <module name="town-mq" target="1.8" />
+      <module name="town-repo" target="1.8" />
+      <module name="town-service" target="1.8" />
+      <module name="town-service-api" target="1.8" />
+      <module name="town-web" target="1.8" />
       <module name="wechat" target="1.8" />
       <module name="weixin-common" target="1.8" />
       <module name="weixin-repo" target="1.8" />
       <module name="weixin-service" target="1.8" />
       <module name="weixin-web" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="town-common" options="-parameters" />
+      <module name="town-mq" options="-parameters" />
+      <module name="town-repo" options="-parameters" />
+      <module name="town-service" options="-parameters" />
+      <module name="town-service-api" options="-parameters" />
+      <module name="town-web" options="-parameters" />
+    </option>
   </component>
 </project>
