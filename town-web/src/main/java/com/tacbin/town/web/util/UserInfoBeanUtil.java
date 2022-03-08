@@ -31,7 +31,7 @@ public class UserInfoBeanUtil {
 
     public String decodePwd(String pwd, String salt) {
         //将原始密码加盐（上面生成的盐），并且用md5算法加密多次，将最后结果存入数据库中
-        return new SimpleHash("MD5", pwd, new MySimpleByteSource(salt), Integer.parseInt(times)).toHex();
+        return new SimpleHash("MD5", pwd, new MySimpleByteSource(salt), 2).toHex();
     }
 
     public String genSalt() {
@@ -53,5 +53,11 @@ public class UserInfoBeanUtil {
      */
     public void logOut() {
         SecurityUtils.getSubject().logout();
+    }
+
+    public static void main(String[] args) {
+        String salt = new UserInfoBeanUtil().genSalt();
+        System.out.println(salt);
+        System.out.println(new UserInfoBeanUtil().decodePwd("12345","9fd373b27de172b4624d0d0865df9f72"));
     }
 }

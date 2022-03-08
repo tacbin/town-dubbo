@@ -30,7 +30,7 @@ embedded:
 
 dubbo:
   registry:
-    address: zookeeper://129.204.189.111:${embedded.zookeeper.port}
+    address: zookeeper://localhost:${embedded.zookeeper.port}
 wx:
   mp:
     configs:
@@ -53,3 +53,5 @@ shiro:
 
 custom:
   md-times: 2
+server:
+  port: 9001
