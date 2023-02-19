@@ -24,13 +24,11 @@ spring:
     timeout: 5000
     password: tacbin@123
     database: 0
-embedded:
-  zookeeper:
-    port: 2181
 
 dubbo:
   registry:
-    address: zookeeper://localhost:${embedded.zookeeper.port}
+    address: zookeeper://119.29.97.135:2181
+    timeout: 50000
 wx:
   mp:
     configs:
