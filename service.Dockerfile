@@ -15,15 +15,12 @@ RUN mkdir $WORK_DATA
 COPY . .
 
 ARG JAVA_OPTS='-server -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:$WORK_DATA/logs/gc_%p.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=30m -XX:+HeapDumpOnOutOfMemoryError'
-RUN echo $(ls) & mvn install --settings ./settings.xml
+RUN echo $(ls) & mvn install -Dmaven.test.skip=true -Dmaven.repo.local=./.m2  --settings ./settings.xml
 
 RUN mv town-service/target/app.jar $WORK_PATH/app.jar
 
-#RUN d .
-#
-#ENV LANG=en_US.UTF-8
-#
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
+
 EXPOSE 8080
-#
+
 CMD java ${JAVA_OPTS} -jar $WORK_PATH/app.jar
-#CMD sleep 100
