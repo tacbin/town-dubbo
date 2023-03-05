@@ -5,6 +5,7 @@ import com.tacbin.town.api.service.entity.TestEntity;
 import com.tacbin.town.web.entity.TestEntityVO;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -18,7 +19,7 @@ public class TestController {
     @Reference
     private TestService testService;
 
-    @RequestMapping("/success")
+    @RequestMapping(path = "/success", method = RequestMethod.GET)
     public TestEntityVO test() {
         TestEntity entity = testService.test();
         TestEntityVO entityVO = new TestEntityVO();

@@ -27,6 +27,9 @@ dubbo:
   registry:
     address: zookeeper://119.29.97.135:2181
     timeout: 50000
+    check: false
+  consumer:
+    check: false
   scan:
     base-packages: com.tacbin.town.service.service
 
