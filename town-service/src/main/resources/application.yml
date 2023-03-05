@@ -23,7 +23,7 @@ spring:
 dubbo:
   protocol:
     name: dubbo
-    port: -1
+    port: 8080
   registry:
     address: zookeeper://119.29.97.135:2181
     timeout: 50000
