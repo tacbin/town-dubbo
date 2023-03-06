@@ -14,7 +14,7 @@ RUN mkdir $WORK_DATA
 
 COPY . .
 
-COPY /etc/var ./.m2
+COPY /etc/.m2/ ./.m2/
 
 ARG JAVA_OPTS='-server -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:$WORK_DATA/logs/gc_%p.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=30m -XX:+HeapDumpOnOutOfMemoryError'
 RUN echo $(ls) & mvn install -Dmaven.test.skip=true -Dmaven.repo.local=./.m2 --settings ./settings.xml
